@@ -21,15 +21,9 @@ def get_video_info():
     upload_date = soup.find('meta', itemprop='uploadDate')['content']
     view_count = soup.find('meta', itemprop='interactionCount')['content']
     thumbnail_url = soup.find('link', itemprop='thumbnailUrl')['href']
-
+    videoinfo = [title, description, upload_date, view_count, thumbnail_url]
     # Return the video information as a JSON response.
-    return jsonify({
-        'title': title,
-        'description': description,
-        'upload_date': upload_date,
-        'view_count': view_count,
-        'thumbnail_url': thumbnail_url
-    }), 200
+    return render_template("index.html", rates=videoinfo)
 
 
 if __name__ == '__main__':
