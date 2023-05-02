@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import requests
 from bs4 import BeautifulSoup
 
@@ -23,7 +23,7 @@ def get_rates():
     rate = soup.find('p', {'class': 'verybigtext'}).text
 
     # Return the conversion rate as a JSON response
-    return jsonify({'conversion_rate': rate}), 200
+    return render_template("index.html", rates=rate)
 
 
 if __name__ == '__main__':
